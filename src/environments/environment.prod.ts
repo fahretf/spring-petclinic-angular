@@ -20,7 +20,18 @@
  * @author Vitaliy Fedoriv
  */
 
+declare global {
+  interface Window {
+    env?: {
+      REST_API_URL: string;
+    }
+  }
+}
+
+
 export const environment = {
   production: true,
-  REST_API_URL: 'http://localhost:9966/petclinic/api/'
+  get REST_API_URL(): string {
+    return window.env?.REST_API_URL
+  }
 };
